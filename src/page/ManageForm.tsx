@@ -16,6 +16,8 @@ import {
 import RadioForm from "../components/Input/RadioForm";
 import SelectForm from "../components/Input/SelectForm";
 import InputForm from "../components/Input/InputForm";
+import TableForm from "../components/Table/TableForm";
+import { Link } from "react-router-dom";
 
 // const style: React.CSSProperties = { background: '#0092ff', padding: '8px 0' };
 
@@ -42,37 +44,46 @@ export default function ManageForm() {
     </Form.Item>
   );
   return (
-    <div>
-      <div>การจัดการหน้าฟอร์ม</div>
-      <Form {...formItemLayout} style={{ maxWidth: 600 }}>
-        
+    <div style={{display:'flex',justifyContent:'center',flexDirection:'column'}}>
+      <h2>การจัดการหน้าฟอร์ม</h2>
+      <div style={{display:'flex',justifyContent:'center'}}>
+      <div style={{position:'absolute', top:40,right:10}}>
+      <Select style={{ width: 100 }} defaultValue={"Thai"}>
+                <Select.Option value="Thai">Thai</Select.Option>
+                <Select.Option value="English">English</Select.Option>
+      </Select>
+      </div>
+      <div style={{position:'absolute', top:80,right:10}}>
+      <Link to="/">
+      <Button>หน้าหลัก</Button>
+      </Link>
+      </div>
 
+      <Form {...formItemLayout} style={{ maxWidth: 700, border:'solid 2px' ,borderRadius:'10px', padding:'10px'}}>
+        
         <Row>
           <Col span={8}>
-            คำนำหน้า:{" "}
             <Form.Item
-              label="Select"
-              name="Select"
+              label="คำนำหน้า"
+              name="คำนำหน้า"
               rules={[{ required: true, message: "Please input!" }]}
             >
-              <Select />
+              <SelectForm />
             </Form.Item>
           </Col>
           <Col span={8}>
-            ชื่อจริง:
             <Form.Item
-              label="Input"
-              name="Input"
+              label="ชื่อจริง"
+              name="ชื่อจริง"
               rules={[{ required: true, message: "Please input!" }]}
             >
               <Input />
             </Form.Item>
           </Col>
           <Col span={8}>
-            นามสกุล:{" "}
             <Form.Item
-              label="Input"
-              name="Input"
+              label="นามสกุล"
+              name="นามสกุล"
               rules={[{ required: true, message: "Please input!" }]}
             >
               <Input />
@@ -81,20 +92,18 @@ export default function ManageForm() {
         </Row>
         <Row>
           <Col span={12}>
-            วันเกิด:{" "}
             <Form.Item
-              label="DatePicker"
-              name="DatePicker"
+              label="วันเกิด"
+              name="วันเกิด"
               rules={[{ required: true, message: "Please input!" }]}
             >
               <DatePicker />
             </Form.Item>
           </Col>
           <Col span={12}>
-            สัญชาติ:{" "}
             <Form.Item
-              label="Select"
-              name="Select"
+              label="สัญชาติ"
+              name="สัญชาติ"
               rules={[{ required: true, message: "Please input!" }]}
             >
               <Select>
@@ -106,32 +115,39 @@ export default function ManageForm() {
         </Row>
         <Row>
           <Col span={24}>
-            เลขบัตรประชาชน:
-            <div>
+            <Form.Item 
+              label="เลขบัตรประชาชน"
+              name="เลขบัตรประชาชน">
+            <div style={{display:'flex',alignItems:'center',width:'200px'}}>
               <InputForm />-
-            </div>
-            <div>
               <InputForm />-
-            </div>
-            <div>
               <InputForm />-
-            </div>
-            <div>
-              <InputForm />-
-            </div>
+              <InputForm />
+                </div>
+
+            </Form.Item>
+            
           </Col>
         </Row>
         <Row>
           <Col span={24}>
-            เพศ: <RadioForm />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={24}>
-            หมายเลขโทรศัพท์มือถือ:
             <Form.Item
-              name="phone"
-              label="Phone Number"
+            name="เพศ"
+            label="เพศ"
+            rules={[
+              { required: true, message: "Please input !" },
+            ]}
+            >
+
+            <RadioForm />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <Form.Item
+              name="หมายเลขโทรศัพท์มือถือ"
+              label="หมายเลขโทรศัพท์มือถือ"
               rules={[
                 { required: true, message: "Please input your phone number!" },
               ]}
@@ -143,29 +159,47 @@ export default function ManageForm() {
           </Col>
         </Row>
         <Row>
-          <Col span={24}>
-            หนังสือเดินทาง: <InputForm />
+          <Col span={10} style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
+            <Form.Item 
+              label="หนังสือเดินทาง"
+              name="หนังสือเดินทาง">
+              <Input />
+            </Form.Item>
           </Col>
         </Row>
 
-        <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-          <Row>
-            <Col span={8}>
-              เงินเดือนที่คาดหวัง: <InputForm />
+        <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
+          <Row >
+            <Col span={12} style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
+            <Form.Item 
+              label="เงินเดือนที่คาดหวัง"
+              name="เงินเดือนที่คาดหวัง"
+              rules={[
+                { required: true, message: "Please input your money" },
+              ]}>
+                
+              <Input />
+            </Form.Item>
             </Col>
-            <Col span={8}>
-              <Button htmlType="reset">Reset</Button>
+            <div style={{display:'flex', justifyContent:'space-between'}}>
+
+            <Col span={6}>
+              <Button htmlType="reset">ล้างข้อมูล</Button>
             </Col>
-            <Col span={8}>
-              <Button type="primary" htmlType="submit">
-                Submit
+            <Col span={6}>
+              <Button type="default" htmlType="submit">
+                ส่งข้อมูล
               </Button>
             </Col>
+            </div>
           </Row>
         </Form.Item>
       </Form>
+      </div>
+      <div>
 
-      <Table />
+      <TableForm/>
+      </div>
     </div>
   );
 }

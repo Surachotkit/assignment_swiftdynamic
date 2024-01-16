@@ -59,7 +59,7 @@ const TableForm: React.FC = () => {
   const hasSelected = selectedRowKeys.length > 0;
 
   return (
-    <div>
+    <div >
       <div style={{ marginBottom: 16 }}>
         <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
           ลบข้อมูล

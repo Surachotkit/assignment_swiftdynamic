@@ -1,0 +1,29 @@
+.control-left {
+  width: 0;
+  height: 0;
+  border-bottom: 50px solid transparent;
+  border-top: 50px solid transparent;
+  border-right: 86.6px solid gray; 
+}
+
+.control-top {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 86.6px solid gray; 
+}
+.control-bottom {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 86.6px solid gray; 
+}
+.control-right {
+    width: 0;
+    height: 0;
+    border-bottom: 50px solid transparent;
+    border-top: 50px solid transparent;
+    border-left: 86.6px solid gray; 
+}
