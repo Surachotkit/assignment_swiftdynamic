@@ -15,14 +15,14 @@ import { addNote } from "../action/action";
 
 const { Option } = Select;
 
-export default function Detail() {
+const Detail: React.FC = () => {
     const navigate = useNavigate();
 
   const location = useLocation();
   const data = location.state?.record;
   console.log("🚀 ~ Detail ~ data:", data);
 
-  const [dataDetail, setDataDetail] = useState([]);
+  const [dataDetail, setDataDetail] = useState<any[]>([]);
   console.log("🚀 ~ Detail ~ dataDetail:", dataDetail)
   useEffect(() => {
     setDataDetail(data)
@@ -179,3 +179,4 @@ export default function Detail() {
   );
 }
 
+export default Detail;
