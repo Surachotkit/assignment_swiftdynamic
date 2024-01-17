@@ -1,29 +1,34 @@
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Col, Row } from "antd";
 import {
-  DatePicker,
   Form,
   Input,
   Select,
 
 } from "antd";
 import RadioForm from "../components/Input/RadioForm";
-import TableForm from "../components/Table/TableForm";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addNote } from "../action/action";
 
 
 const { Option } = Select;
-export default function ManageForm() {
+
+export default function Detail() {
+    const navigate = useNavigate();
+
+  const location = useLocation();
+  const data = location.state?.record;
+  console.log("🚀 ~ Detail ~ data:", data);
+
+  const [dataDetail, setDataDetail] = useState([]);
+  console.log("🚀 ~ Detail ~ dataDetail:", dataDetail)
+  useEffect(() => {
+    setDataDetail(data)
+  }, []);
+
   
-  const prefixSelector = (
-    <Form.Item name="prefixphonenumber" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="66">+66</Option>
-        <Option value="99">+99</Option>
-      </Select>
-    </Form.Item>
-  );
 
 
   const dispatch = useDispatch();
@@ -40,10 +45,13 @@ export default function ManageForm() {
   const onFinish = (values: any) => {
     console.log("Form values:", values);
     dispatch(addNote(values));
+    navigate('/manage')
   };
+
+ 
   return (
     <div style={{display:'flex',justifyContent:'center',flexDirection:'column'}}>
-      <h2>การจัดการหน้าฟอร์ม</h2>
+      <h2>แก้ไข</h2>
       <div style={{display:'flex',justifyContent:'center'}}>
       <div style={{position:'absolute', top:40,right:10}}>
       <Select style={{ width: 100 }} defaultValue={"Thai"}>
@@ -52,8 +60,8 @@ export default function ManageForm() {
       </Select>
       </div>
       <div style={{position:'absolute', top:80,right:10}}>
-      <Link to="/">
-        <Button>หน้าหลัก</Button>
+      <Link to="/manage">
+        <Button>กลับ</Button>
       </Link>
       </div>
 
@@ -92,16 +100,7 @@ export default function ManageForm() {
           </Col>
         </Row>
         <Row>
-          <Col span={6}>
-            <Form.Item
-              label="วันเกิด"
-              name="birthday"
-              rules={[{ required: true, message: "Please input!" }]}
-            >
-              <DatePicker />
-     
-            </Form.Item>
-          </Col>
+          
           <Col span={12}>
             <Form.Item
               label="สัญชาติ"
@@ -115,20 +114,7 @@ export default function ManageForm() {
             </Form.Item>
           </Col>
         </Row>
-        <Row>
-          <Col span={10}>
-            <Form.Item 
-              label="เลขบัตรประชาชน"
-              name="idCardNumber">
-            <div style={{ display: "flex", alignItems: "center" }}>
-                  <Input style={{ width: "80%" }} />
-  
-                </div>
-
-            </Form.Item>
-            
-          </Col>
-        </Row>
+       
         <Row >
 
           <Col span={10}  >
@@ -156,45 +142,29 @@ export default function ManageForm() {
               ]}
             >
            
-            <Input addonBefore={prefixSelector} style={{ width: "100%" }}  />
+            <Input style={{ width: "100%" }}  />
               
             </Form.Item>
             
           </Col>
         </Row>
-        <Row>
-          <Col span={6} style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
-            <Form.Item 
-              
-              label="หนังสือเดินทาง"
-              name="passport">
-              <Input />
-            </Form.Item>
-          </Col>
-        </Row>
+        
 
         <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
           <Row >
-            <Col span={6} style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
-            <Form.Item 
-              label="เงินเดือนที่คาดหวัง"
-              name="expectedSalary"
-              rules={[
-                { required: true, message: "Please input your money" },
-              ]}>
-                
-              <Input />
-            </Form.Item>
-            </Col>
+            
             <div style={{display:'flex', justifyContent:'end'}}>
 
             <Col span={14}>
               <Button htmlType="reset">ล้างข้อมูล</Button>
             </Col>
             <Col span={6}>
+       
+            
               <Button type="default" htmlType="submit">
-                ส่งข้อมูล
+                อัพเดท
               </Button>
+   
             </Col>
             </div>
           </Row>
@@ -203,8 +173,9 @@ export default function ManageForm() {
       </div>
       <div>
 
-      <TableForm/>
+   
       </div>
     </div>
   );
 }
+

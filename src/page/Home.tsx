@@ -1,24 +1,10 @@
 import { Button, Select } from "antd";
-import Form from "../components/Form/Form";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addNote } from "../action/action";
-import { NotesState } from "../reducer/notesReducer";
-import { NewNoteInput } from "../components/Input/NewNoteInputProps";
 import { Col, Row } from 'antd';
 import "./Home.css";
 
 export default function Home() {
-  const notes = useSelector<NotesState, NotesState["notes"]>(
-    (state: { notes: any }) => state.notes
-  );
-  console.log("🚀 ~ App ~ notes:", notes);
-  const dispatch = useDispatch();
 
-  const onAddNote = (note: string) => {
-    console.log("🚀 ~ onAddNote ~ note:", note);
-    dispatch(addNote(note));
-  };
   return (
     <div >
       <h2>การจัดการหน้าเว็บ</h2>
@@ -48,10 +34,15 @@ export default function Home() {
 
 
       <Col span={6}>
-        <div style={{display:'flex',justifyContent:'center',alignItems:'center',background:'#fff', width:'100%', height:'180px'}}>
+        <div style={{display:'flex',justifyContent:'center',alignItems:'center',background:'#fff', width:'100%', height:'180px',cursor:'pointer',  }} >
           <div className="control-top"></div>
+          <div style={{position:'absolute', bottom:-15,right:-50,zIndex:'100', background:'#6eda78', borderRadius:'20px', padding:'5px'}}>
+
+          เปลี่ยนตำแหน่ง
+          </div>
         </div>
       </Col>
+      
       <Col span={6}>
         <div style={{display:'flex',justifyContent:'center',alignItems:'center',background:'#fff', width:'100%', height:'180px'}}>
           <div className="control-bottom"></div>
@@ -62,6 +53,10 @@ export default function Home() {
       <Col span={6}>
         <div style={{display:'flex',justifyContent:'center',alignItems:'center',background:'#fff', width:'100%', height:'180px'}}>
           <div className="control-right"></div>
+          <div style={{position:'absolute', bottom:-15, background:'#6eda78', borderRadius:'20px', padding:'5px'}}>
+
+          เลื่อนรูปแบบ
+          </div>
         </div>
       </Col>
     </Row>
@@ -105,14 +100,6 @@ export default function Home() {
     
       </div>
     
-
-      <NewNoteInput addNote={onAddNote} />
-      <hr />
-      <ul>
-        {notes.map((note) => {
-          return <li key={note}>{note}</li>;
-        })}
-      </ul>
     </div>
   );
 }

@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Action } from "../action/action"
 
 export interface NotesState {
-  notes: string[]
+  notes: any[]
 }
 
 const initialState = {
@@ -19,3 +20,4 @@ export const notesReducer = (state:NotesState = initialState, action: Action) =>
       return state
   }
 }
+

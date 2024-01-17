@@ -2,10 +2,8 @@ import React from 'react';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 import Home from '../page/Home';
 import ManageForm from '../page/ManageForm';
+import Detail from '../page/Detail';
 
-// interface ManageFormProps {
-//   // Define ManageForm component props if any
-// }
 
 const routerConfig: RouteObject[] = [
   {
@@ -15,6 +13,10 @@ const routerConfig: RouteObject[] = [
   {
     path: '/manage',
     element: <ManageForm />,
+  },
+  {
+    path: '/detail',
+    element: <Detail />,
   },
 ];
 
